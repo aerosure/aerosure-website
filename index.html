@@ -10,8 +10,7 @@
     <header>
         <nav class="container">
             <div class="logo-container">
-                <div class="logo-mark">AS</div>
-                <div class="logo-text">AeroSure</div>
+                <img src="assets/aerosure-logo.png" alt="AeroSure Professional Drone Services" class="header-logo" />
             </div>
             <ul class="nav-links">
                 <li><a href="#services">Services</a></li>
@@ -44,9 +43,38 @@
                     </div>
                 </div>
                 
-                <div class="hero-visual">
-                    <div class="logo-showcase">
-                        <img src="assets/aerosure-logo.png" alt="AeroSure Professional Drone Services" />
+                <div class="hero-media">
+                    <div class="media-showcase">
+                        <!-- Primary showcase image/video -->
+                        <div class="media-primary">
+                            <img src="assets/hero-drone-footage.jpg" alt="Professional drone aerial photography showcase" class="primary-media" />
+                            <div class="media-overlay">
+                                <div class="play-button">▶</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Secondary media thumbnails -->
+                        <div class="media-thumbnails">
+                            <div class="thumbnail-item">
+                                <img src="assets/construction-aerial.jpg" alt="Construction site aerial view" />
+                                <span class="thumbnail-label">Construction</span>
+                            </div>
+                            <div class="thumbnail-item">
+                                <img src="assets/property-inspection.jpg" alt="Property roof inspection" />
+                                <span class="thumbnail-label">Inspection</span>
+                            </div>
+                            <div class="thumbnail-item">
+                                <img src="assets/infrastructure-documentation.jpg" alt="Infrastructure documentation" />
+                                <span class="thumbnail-label">Infrastructure</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Media quality badges -->
+                        <div class="quality-badges">
+                            <div class="quality-badge">4K Video</div>
+                            <div class="quality-badge">High-Res Photos</div>
+                            <div class="quality-badge">Professional Grade</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -329,6 +357,26 @@
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
+        });
+
+        // Media showcase interactions
+        document.querySelectorAll('.thumbnail-item').forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                const primaryMedia = document.querySelector('.primary-media');
+                const newSrc = this.querySelector('img').src;
+                primaryMedia.src = newSrc;
+                
+                // Remove active class from all thumbnails
+                document.querySelectorAll('.thumbnail-item').forEach(t => t.classList.remove('active'));
+                // Add active class to clicked thumbnail
+                this.classList.add('active');
+            });
+        });
+
+        // Play button functionality (placeholder for video integration)
+        document.querySelector('.play-button')?.addEventListener('click', function() {
+            console.log('Play button clicked - integrate with video player');
+            // This is where you'd integrate video playback functionality
         });
     </script>
 </body>
