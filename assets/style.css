@@ -255,21 +255,7 @@ nav {
     position: relative;
 }
 
-.logo-showcase {
-    width: 500px;
-    height: 500px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-    border: 1px solid var(--gray-200);
-}
 
-.logo-showcase img {
-    width: 100%;
-    height: auto;
-}
 
 /* Section Styles */
 .section-header {
