@@ -3,381 +3,1014 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AeroSure Imaging & Inspection | Professional Drone Services - Richmond, VA</title>
-    <link rel="stylesheet" href="assets/style.css">
+    <title>aerosure | Professional Drone Imaging & Inspection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-teal: #00B4D8;
+            --dark-teal: #0082A8;
+            --light-teal: #5FD4EC;
+            --dark-bg: #0f172a;
+            --darker-bg: #020617;
+            --gray-900: #111827;
+            --gray-800: #1f2937;
+            --gray-700: #374151;
+            --gray-600: #4b5563;
+            --gray-500: #6b7280;
+            --gray-400: #9ca3af;
+            --gray-300: #d1d5db;
+            --gray-200: #e5e7eb;
+            --gray-100: #f3f4f6;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--gray-300);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-teal);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary-teal), var(--dark-teal));
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 6rem 2rem 4rem;
+            background: radial-gradient(ellipse at center top, rgba(14, 165, 233, 0.15), transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            color: var(--light-teal);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--white), var(--primary-teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-400);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-teal), var(--dark-teal));
+            color: var(--white);
+            padding: 0.875rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(14, 165, 233, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 0.875rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary-teal);
+        }
+
+        /* Grid Background */
+        .grid-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(14, 165, 233, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(14, 165, 233, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.3;
+            animation: float 20s infinite linear;
+            pointer-events: none;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 5rem 2rem;
+            background: var(--dark-bg);
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .about-text h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .about-text p {
+            color: var(--gray-300);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .credentials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .credential {
+            background: rgba(14, 165, 233, 0.05);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .credential strong {
+            display: block;
+            color: var(--primary-teal);
+            margin-bottom: 0.25rem;
+        }
+
+        .credential span {
+            color: var(--gray-400);
+            font-size: 0.875rem;
+        }
+
+        .about-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--gray-900);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            border-color: rgba(14, 165, 233, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-teal);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--gray-400);
+            font-size: 0.875rem;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 2rem;
+            background: var(--darker-bg);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: rgba(14, 165, 233, 0.1);
+            color: var(--primary-teal);
+            padding: 0.25rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            color: var(--gray-400);
+            font-size: 1.125rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--gray-900);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-teal), var(--dark-teal));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(14, 165, 233, 0.3);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+
+        .service-price {
+            font-size: 1.1rem;
+            color: var(--primary-teal);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .service-description {
+            color: var(--gray-400);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .service-output {
+            color: var(--gray-500);
+            font-size: 0.8rem;
+        }
+
+        /* Booking Form */
+        .booking-form {
+            padding: 4rem 2rem;
+            background: var(--dark-bg);
+            display: none;
+        }
+
+        .booking-form.active {
+            display: block;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--gray-900);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-container h3 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-container p {
+            color: var(--gray-400);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--white);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-teal);
+            background: rgba(14, 165, 233, 0.05);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-note {
+            color: var(--gray-500);
+            font-size: 0.875rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        /* Tech Stack Section */
+        .tech-stack {
+            padding: 5rem 2rem;
+            background: var(--dark-bg);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .tech-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .tech-card:hover {
+            background: rgba(14, 165, 233, 0.05);
+            border-color: rgba(14, 165, 233, 0.2);
+        }
+
+        .tech-name {
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .tech-description {
+            color: var(--gray-500);
+            font-size: 0.875rem;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 5rem 2rem;
+            background: var(--darker-bg);
+        }
+
+        .faq-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .faq-item {
+            background: var(--gray-900);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(0, 180, 216, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .faq-question {
+            font-size: 1.1rem;
+            color: var(--white);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .faq-answer {
+            color: var(--gray-400);
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--dark-teal), var(--primary-teal));
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker-bg);
+            padding: 3rem 2rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: var(--gray-400);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section h4 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--gray-400);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-teal);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray-500);
+            font-size: 0.875rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(-50px, -50px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-stats {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <div class="logo-container">
-                <img src="assets/aerosure-logo.png" alt="AeroSure Professional Drone Services" class="header-logo" />
-            </div>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="aerosure-logo.png" alt="aerosure Imaging & Inspection" style="height: 70px; width: auto;">
+            </a>
             <ul class="nav-links">
                 <li><a href="#services">Services</a></li>
-                <li><a href="#capabilities">Capabilities</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#technology">Technology</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact" class="cta-button">Get Quote</a></li>
             </ul>
-            <a href="#contact" class="cta-button">Get Quote</a>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
+    <!-- Hero Section -->
     <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>Professional Drone Imaging & Inspection Services</h1>
-                    <p class="hero-subtitle">Clarity from Above. Confidence Below.</p>
-                    <p class="hero-description">
-                        Mission-based aerial imaging services for contractors, property owners, and infrastructure professionals. FAA-certified operations delivering high-resolution documentation enhanced by MissionPack™ workflows and AeroIntel Assist analysis.
+        <div class="grid-bg"></div>
+        <div class="hero-content">
+            <div class="hero-badge">FAA Part 107 Certified • $1M Liability Insurance • Richmond Metro Area</div>
+            <h1>
+                <span class="gradient-text">Elevate Your Perspective</span><br>
+                Professional Drone Services
+            </h1>
+            <p class="hero-subtitle" style="font-size: 1.5rem; font-weight: 600; color: var(--primary-teal); margin-bottom: 1rem;">
+                Clarity Above, Confidence Below
+            </p>
+            <p class="hero-subtitle">
+                Cutting-edge aerial imaging and inspection services that deliver 
+                4K documentation in 24 hours. Richmond's trusted eye in the sky.
+            </p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn-primary">Get Free Quote</a>
+                <a href="#services" class="btn-secondary">View Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="section-header">
+            <span class="section-badge">About</span>
+            <h2>Richmond's Insurance-Grade Aerial Intelligence</h2>
+        </div>
+        
+        <div class="about-content">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h3>Precision Meets Protection</h3>
+                    <p>
+                        We bring a unique perspective to aerial inspection—combining FAA Part 107 certified drone operations with deep insurance industry expertise. We understand exactly what insurers, contractors, and property owners need for documentation and risk assessment.
+                    </p>
+                    <p>
+                        Founded as a family business with an eye toward the future, we're building Richmond's most trusted aerial inspection service. While our founder Dustin serves as the certified pilot today, we're developing this company to pass to the next generation. This long-term vision means we're invested in building lasting relationships and a stellar reputation in our community.
+                    </p>
+                    <p>
+                        Our specialized knowledge means faster claims processing, better coverage decisions, and documentation that stands up to scrutiny. When precision matters and stakes are high, Richmond trusts aerosure.
                     </p>
                     
-                    <div class="location-badge">
-                        <span>📍</span>
-                        <span>Richmond, VA & Central Virginia</span>
-                    </div>
-                    
-                    <div class="hero-buttons">
-                        <a href="#services" class="btn-primary">View Services</a>
-                        <a href="#contact" class="btn-secondary">Request Consultation</a>
+                    <div class="credentials-grid">
+                        <div class="credential">
+                            <strong>FAA Part 107</strong>
+                            <span>Certified Pilot</span>
+                        </div>
+                        <div class="credential">
+                            <strong>Family Business</strong>
+                            <span>Building for Next Generation</span>
+                        </div>
+                        <div class="credential">
+                            <strong>$1M Liability</strong>
+                            <span>Fully Insured Operations</span>
+                        </div>
+                        <div class="credential">
+                            <strong>24-Hour Delivery</strong>
+                            <span>Rapid Documentation</span>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="hero-media">
-                    <div class="media-showcase">
-                        <!-- Primary showcase image/video -->
-                        <div class="media-primary">
-                            <img src="assets/hero-drone-footage.jpg" alt="Professional drone aerial photography showcase" class="primary-media" />
-                            <div class="media-overlay">
-                                <div class="play-button">▶</div>
-                            </div>
-                        </div>
-                        
-                        <!-- Secondary media thumbnails -->
-                        <div class="media-thumbnails">
-                            <div class="thumbnail-item">
-                                <img src="assets/construction-aerial.jpg" alt="Construction site aerial view" />
-                                <span class="thumbnail-label">Construction</span>
-                            </div>
-                            <div class="thumbnail-item">
-                                <img src="assets/property-inspection.jpg" alt="Property roof inspection" />
-                                <span class="thumbnail-label">Inspection</span>
-                            </div>
-                            <div class="thumbnail-item">
-                                <img src="assets/infrastructure-documentation.jpg" alt="Infrastructure documentation" />
-                                <span class="thumbnail-label">Infrastructure</span>
-                            </div>
-                        </div>
-                        
-                        <!-- Media quality badges -->
-                        <div class="quality-badges">
-                            <div class="quality-badge">4K Video</div>
-                            <div class="quality-badge">High-Res Photos</div>
-                            <div class="quality-badge">Professional Grade</div>
-                        </div>
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">FAA 107</div>
+                        <div class="stat-label">Certified Pilot</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">24hr</div>
+                        <div class="stat-label">Standard Turnaround</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">50mi</div>
+                        <div class="stat-label">Service Radius</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-overline">Professional Services</div>
-                <h2>Comprehensive Aerial Solutions</h2>
-                <p>FAA-certified drone operations delivering precise documentation and analysis for construction, real estate, and infrastructure projects.</p>
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-header">
+            <span class="section-badge">Services</span>
+            <h2>Professional Solutions</h2>
+            <p class="section-subtitle">
+                Inspections tailored for speed and accuracy. Core offerings include aerial photo/video capture, annotated imagery, and structured reports for owners, contractors, and insurers.
+            </p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <h3 class="service-title">RoofWatch™</h3>
+                <p class="service-price">From $299</p>
+                <p class="service-description">
+                    High-resolution roof inspections with annotated imagery, condition notes, and repair prioritization.
+                </p>
+                <p class="service-output">Standard outputs: PDF report, annotated imagery, video clips on request.</p>
             </div>
+
+            <div class="service-card">
+                <h3 class="service-title">SiteWatch™</h3>
+                <p class="service-price">From $399/visit</p>
+                <p class="service-description">
+                    Progress and condition checks for construction sites. Monthly packages available with volume discounts.
+                </p>
+                <p class="service-output">Standard outputs: PDF report, annotated imagery, video clips on request.</p>
+            </div>
+
+            <div class="service-card">
+                <h3 class="service-title">StormCheck™</h3>
+                <p class="service-price">From $399</p>
+                <p class="service-description">
+                    Same-day storm documentation for insurance claims. Priority response with carrier-ready evidence packages.
+                </p>
+                <p class="service-output">Standard outputs: PDF report, annotated imagery, video clips on request.</p>
+            </div>
+
+            <div class="service-card">
+                <h3 class="service-title">RealEstate360™</h3>
+                <p class="service-price">From $349</p>
+                <p class="service-description">
+                    Marketing and inspection imagery for residential and commercial property listings.
+                </p>
+                <p class="service-output">Standard outputs: PDF report, annotated imagery, video clips on request.</p>
+            </div>
+
+            <div class="service-card">
+                <h3 class="service-title">DroneIQ™</h3>
+                <p class="service-price">Custom Quote</p>
+                <p class="service-description">
+                    Flight planning, compliance, and documentation pipeline for repeatable missions across sites.
+                </p>
+                <p class="service-output">Standard outputs: PDF report, annotated imagery, video clips on request.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="tech-stack" id="technology">
+        <div class="section-header">
+            <span class="section-badge">Technology</span>
+            <h2>Professional Equipment</h2>
+            <p class="section-subtitle">
+                Enterprise-grade tools for superior results
+            </p>
+        </div>
+
+        <div class="tech-grid">
+            <div class="tech-card">
+                <div class="tech-name">DJI Air 3</div>
+                <div class="tech-description">48MP dual camera system</div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-name">4K Resolution</div>
+                <div class="tech-description">Crystal clear imagery</div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-name">Fast Turnaround</div>
+                <div class="tech-description">24-hour delivery standard</div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-name">Cloud Storage</div>
+                <div class="tech-description">Secure data management</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+        <div class="section-header">
+            <span class="section-badge">FAQ</span>
+            <h2>Common Questions</h2>
+            <p class="section-subtitle">Quick answers to help you make informed decisions</p>
+        </div>
+        
+        <div class="faq-container">
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3 class="faq-question">What happens if weather prevents flying?</h3>
+                    <p class="faq-answer">We monitor conditions closely and reschedule at no charge. For storm damage documentation, we prioritize clear weather windows to capture evidence quickly.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">Do I need to be present during inspection?</h3>
+                    <p class="faq-answer">Not required for exterior inspections. We just need property access confirmation. For construction sites, coordinate with your site manager.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">What's included in the standard report?</h3>
+                    <p class="faq-answer">PDF report with findings summary, 25+ annotated high-resolution images, issue identification with severity ratings, and recommendations. Video clips available on request.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">How quickly will I receive my report?</h3>
+                    <p class="faq-answer">Standard delivery is 24 hours. Storm damage documentation can be expedited to same-day for insurance claims. Raw images available immediately if needed.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">Are you licensed and insured?</h3>
+                    <p class="faq-answer">Yes. FAA Part 107 certified pilot with $1M liability insurance. Certificate of insurance available upon request for commercial clients.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">What areas do you service?</h3>
+                    <p class="faq-answer">Richmond, Henrico, Chesterfield, and surrounding counties within 50 miles. Travel fees may apply beyond 30 miles.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">What about privacy and neighboring properties?</h3>
+                    <p class="faq-answer">We focus exclusively on your property and follow strict privacy protocols. Neighboring properties are not photographed without permission.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">How do you price larger or complex projects?</h3>
+                    <p class="faq-answer">Base pricing covers standard residential and small commercial. Larger properties, multiple buildings, or specialized requirements are quoted based on scope. Volume discounts available.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section with Quote Form -->
+    <section class="cta-section" id="contact">
+        <div class="cta-content">
+            <h2>Ready to Elevate Your Project?</h2>
+            <p>
+                Get professional drone services with insurance-grade documentation 
+                and 24-hour turnaround.
+            </p>
             
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🏗️</div>
-                    <h3>Construction Documentation</h3>
-                    <p>Progress monitoring, safety compliance verification, and comprehensive project documentation. High-resolution aerial photography and video for accurate project tracking and stakeholder reporting.</p>
-                </div>
+            <div class="form-container" style="background: rgba(0, 0, 0, 0.3); margin-top: 2rem;">
+                <h3>Get a fast quote</h3>
+                <p>Share the address, property type/size, desired outputs, and timeline. We'll scope the mission and price same-day for most projects. <strong>Quote response within 4 hours during business hours.</strong></p>
                 
-                <div class="service-card">
-                    <div class="service-icon">🏘️</div>
-                    <h3>Property & Roof Inspection</h3>
-                    <p>Detailed residential and commercial property inspections including roof condition assessments. Professional documentation for real estate transactions, insurance claims, and maintenance planning.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">🛣️</div>
-                    <h3>Infrastructure Assessment</h3>
-                    <p>Comprehensive documentation of pavements, facades, and building elevations. Visual condition assessments supporting maintenance decisions and asset management strategies.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">🌿</div>
-                    <h3>Environmental Documentation</h3>
-                    <p>Site condition documentation for environmental assessments and moisture risk evaluation. Supporting visuals for risk consultants, environmental professionals, and insurance specialists.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">📱</div>
-                    <h3>MissionPack™ System</h3>
-                    <p>Streamlined digital field collection workflows designed for efficiency and regulatory compliance. Standardized processes that ensure consistent, high-quality deliverables.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">🤖</div>
-                    <h3>AeroIntel Assist</h3>
-                    <p>AI-enhanced analysis and automated reporting tools that transform raw aerial data into actionable insights. Advanced processing for faster, more accurate project intelligence.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="capabilities" class="capabilities">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-overline">Current Capabilities</div>
-                <h2>Professional Standards & Equipment</h2>
-                <p>Our current operational capabilities and service delivery standards.</p>
-            </div>
-            
-            <div class="capabilities-grid">
-                <div class="capability-item">
-                    <div class="capability-icon">🎮</div>
-                    <div class="capability-content">
-                        <h3>Equipment</h3>
-                        <p>DJI Air 3 professional drone platform with 4K photo/video capabilities</p>
+                <form action="mailto:info@aerosure.io" method="post" enctype="text/plain">
+                    <div class="form-group">
+                        <input type="text" name="Name" placeholder="Name" required>
                     </div>
-                </div>
-                
-                <div class="capability-item">
-                    <div class="capability-icon">🧑‍✈️</div>
-                    <div class="capability-content">
-                        <h3>Certification</h3>
-                        <p>FAA Part 107 Remote Pilot Certificate - fully compliant operations</p>
+                    <div class="form-group">
+                        <input type="email" name="Email" placeholder="Email" required>
                     </div>
-                </div>
-                
-                <div class="capability-item">
-                    <div class="capability-icon">📍</div>
-                    <div class="capability-content">
-                        <h3>Service Area</h3>
-                        <p>Central Virginia region with primary base in Richmond</p>
+                    <div class="form-group">
+                        <input type="text" name="Project Address" placeholder="Project address or lat/long" required>
                     </div>
-                </div>
-                
-                <div class="capability-item">
-                    <div class="capability-icon">📦</div>
-                    <div class="capability-content">
-                        <h3>Deliverables</h3>
-                        <p>Organized cloud folders with labeled imagery, video clips, and optional reporting</p>
+                    <div class="form-group">
+                        <textarea name="Scope" placeholder="Scope (e.g., RoofWatch roof inspection, 20k sq ft commercial, deliver PDF + images)" required></textarea>
                     </div>
-                </div>
+                    <button type="submit" class="btn-primary" style="width: 100%; background: white; color: var(--dark-teal);">Send Inquiry</button>
+                </form>
                 
-                <div class="capability-item">
-                    <div class="capability-icon">📱</div>
-                    <div class="capability-content">
-                        <h3>MissionPack™</h3>
-                        <p>Digital workflow system ensuring consistent field collection and compliance</p>
-                    </div>
-                </div>
-                
-                <div class="capability-item">
-                    <div class="capability-icon">🤖</div>
-                    <div class="capability-content">
-                        <h3>AeroIntel Assist</h3>
-                        <p>AI-powered analysis tools for enhanced data processing and insights</p>
-                    </div>
-                </div>
-                
-                <div class="capability-item">
-                    <div class="capability-icon">📅</div>
-                    <div class="capability-content">
-                        <h3>Availability</h3>
-                        <p>Professional part-time operations with flexible scheduling</p>
-                    </div>
-                </div>
-                
-                <div class="capability-item">
-                    <div class="capability-icon">🔐</div>
-                    <div class="capability-content">
-                        <h3>Insurance</h3>
-                        <p>Commercial drone liability coverage for all flight operations</p>
+                    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                    <p style="margin-bottom: 1rem;">Or contact directly:</p>
+                    <div class="hero-buttons" style="justify-content: center;">
+                        <a href="mailto:info@aerosure.io" class="btn-secondary" style="border-color: white;">
+                            info@aerosure.io
+                        </a>
+                        <a href="tel:+18049979804" class="btn-secondary" style="border-color: white;">
+                            Call 804-997-9804
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <div class="section-overline">About AeroSure</div>
-                    <h2>Professional Excellence in Aerial Services</h2>
-                    <p>AeroSure Imaging & Inspection is a professional drone services company operated by <strong>Dustin Jones</strong>, a 25-year veteran in construction risk and insurance, working alongside his son <strong>Levi</strong>, a certified drone pilot.</p>
-                    
-                    <p>Our approach combines deep industry knowledge with cutting-edge aerial technology to deliver exceptional value for contractors, property owners, and infrastructure professionals across Central Virginia.</p>
-                    
-                    <div class="quote-box">
-                        <p>"We're building a sustainable inspection and imaging business founded on integrity, regulatory compliance, and exceptional service quality. Every project is an opportunity to exceed expectations."</p>
-                    </div>
-                </div>
-                
-                <div class="future-capabilities">
-                    <h3>Planned Capabilities</h3>
-                    <p>Expanding our service offerings to better serve our clients:</p>
-                    <ul class="future-list">
-                        <li>Thermal imaging capabilities with FLIR-equipped systems</li>
-                        <li>Environmental moisture documentation for insurance applications</li>
-                        <li>Enhanced MissionPack™ workflows and system integrations</li>
-                        <li>Advanced AeroIntel Assist AI analysis capabilities</li>
-                        <li>Expanded service coverage throughout Virginia</li>
-                        <li>Specialized risk assessment documentation services</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="contact-content">
-                <h2>Professional Consultation</h2>
-                <p>Ready to discuss your aerial imaging and inspection needs? We provide complimentary consultations to understand your requirements and recommend the most effective approach for your project.</p>
-                
-                <div class="contact-grid">
-                    <div class="contact-item">
-                        <div class="contact-item-icon">📧</div>
-                        <h3>Email</h3>
-                        <p>info@aerosureinspection.com</p>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-item-icon">📞</div>
-                        <h3>Phone</h3>
-                        <p>(804) 555=5555</p>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-item-icon">📍</div>
-                        <h3>Service Area</h3>
-                        <p>Richmond & Central Virginia</p>
-                    </div>
-                </div>
-                
-                <a href="mailto:info@aerosureinspection.com" class="contact-cta">Schedule Consultation</a>
-            </div>
-        </div>
-    </section>
-
+    <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>AeroSure Imaging & Inspection</h3>
-                    <p>Professional drone services for construction documentation, property inspection, and infrastructure assessment.</p>
-                    <p>Serving Central Virginia with integrity and excellence.</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Services</h3>
-                    <a href="#services">Construction Documentation</a>
-                    <a href="#services">Property & Roof Inspection</a>
-                    <a href="#services">Infrastructure Assessment</a>
-                    <a href="#services">Environmental Documentation</a>
-                    <a href="#services">MissionPack™ System</a>
-                    <a href="#services">AeroIntel Assist</a>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Contact Information</h3>
-                    <p>📧 info@aerosureinspection.com</p>
-                    <p>📞 (804) 555-5555</p>
-                    <p>📍 Richmond, Virginia</p>
-                    <p>🌐 aerosureinspection.com</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Professional Standards</h3>
-                    <p>FAA Part 107 Certified Operations</p>
-                    <p>Commercial Drone Insurance</p>
-                    <p>Professional & Reliable Service</p>
-                    <p>Regulatory Compliance</p>
-                </div>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3><span class="logo-text">aerosure</span></h3>
+                <p>Professional drone imaging and inspection services in Richmond, Virginia.</p>
+                <p style="color: var(--gray-500); font-size: 0.875rem;">
+                    FAA Part 107 Certified<br>
+                    Fully Insured<br>
+                    AeroSure LLC
+                </p>
             </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 AeroSure Imaging & Inspection. All rights reserved. | Professional drone services built on trust and expertise.</p>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul class="footer-links">
+                    <li><a href="#">RoofWatch™</a></li>
+                    <li><a href="#">SiteWatch™</a></li>
+                    <li><a href="#">StormCheck™</a></li>
+                    <li><a href="#">RealEstate360™</a></li>
+                    <li><a href="#">DroneIQ™</a></li>
+                </ul>
             </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">Insurance Coverage</a></li>
+                    <li><a href="#">Service Area</a></li>
+                    <li><a href="mailto:info@aerosure.io">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 AeroSure LLC. All rights reserved. | $1M Liability Insurance | FAA Part 107 Certified</p>
+            <p style="font-size: 0.75rem; margin-top: 0.5rem; color: var(--gray-600);">
+                Weather-dependent services. 50% deposit required. Full terms available upon booking.
+            </p>
         </div>
     </footer>
-
-    <script>
-        // Professional header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.boxShadow = 'none';
-            }
-        });
-
-        // Smooth scrolling for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Professional intersection observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe elements for scroll animations
-        document.querySelectorAll('.service-card, .capability-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
-
-        // Media showcase interactions
-        document.querySelectorAll('.thumbnail-item').forEach(thumb => {
-            thumb.addEventListener('click', function() {
-                const primaryMedia = document.querySelector('.primary-media');
-                const newSrc = this.querySelector('img').src;
-                primaryMedia.src = newSrc;
-                
-                // Remove active class from all thumbnails
-                document.querySelectorAll('.thumbnail-item').forEach(t => t.classList.remove('active'));
-                // Add active class to clicked thumbnail
-                this.classList.add('active');
-            });
-        });
-
-        // Play button functionality (placeholder for video integration)
-        document.querySelector('.play-button')?.addEventListener('click', function() {
-            console.log('Play button clicked - integrate with video player');
-            // This is where you'd integrate video playback functionality
-        });
-    </script>
 </body>
 </html>
